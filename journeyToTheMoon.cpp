@@ -13,7 +13,6 @@ long long journeyToMoon(int n, vector<vector<int>> astronaut) {
     int p = astronaut.size();
     vector<vector<int>> adjList(n);
     vector<int> sizes;
-    vector<vector<int>> all;
     vector<int> vis(n, 0);
     for(int i = 0; i < p; i++) {
         int u = astronaut[i][0];
@@ -29,19 +28,17 @@ long long journeyToMoon(int n, vector<vector<int>> astronaut) {
         }
         int temp = country.size();
         sizes.push_back(temp);
-        all.push_back(country);
     }
-    long long ans = 0;
-long long totalSum = 0;
-int sizesS = sizes.size();
-
-for (int i = 0; i < sizesS; i++) {
-    totalSum += sizes[i];
-}
-
-for (int i = 0; i < sizesS; i++) {
-    totalSum -= sizes[i];
-    ans += sizes[i] * totalSum;
-}
+    long long ans = 0, totalSum = 0;
+    int sizesS = sizes.size();
+    
+    for (int i = 0; i < sizesS; i++) {
+        totalSum += sizes[i];
+    }
+    
+    for (int i = 0; i < sizesS; i++) {
+        totalSum -= sizes[i];
+        ans += sizes[i] * totalSum;
+    }
     return ans;
 }
